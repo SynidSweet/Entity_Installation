@@ -9,7 +9,7 @@ text_size = 8
 figure_size = 8
 
 # Load the JSON data
-with open('E:\Projects\Glade\Entity\emotions_coordinates.json') as f:
+with open('E:\Projects\Glade\Entity\emotions_coordinates2.json') as f:
     data = json.load(f)
 
 # Function to convert valence and arousal to x, y coordinates
