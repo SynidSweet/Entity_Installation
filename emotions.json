@@ -1,0 +1,152 @@
+[
+    {
+        "Emotion": "Ecstasy",
+        "Valence": 1,
+        "Arousal": 1
+    },
+    {
+        "Emotion": "Serenity",
+        "Valence": 1,
+        "Arousal": -1
+    },
+    {
+        "Emotion": "Admiration",
+        "Valence": 0.8,
+        "Arousal": 0.5
+    },
+    {
+        "Emotion": "Acceptance",
+        "Valence": 0.08809523809523839,
+        "Arousal": 0.0
+    },
+    {
+        "Emotion": "Terror",
+        "Valence": -1,
+        "Arousal": 1
+    },
+    {
+        "Emotion": "Apprehension",
+        "Valence": -0.2,
+        "Arousal": 0.2
+    },
+    {
+        "Emotion": "Amazement",
+        "Valence": 0.43,
+        "Arousal": 1
+    },
+    {
+        "Emotion": "Distraction",
+        "Valence": -0.37793650793650824,
+        "Arousal": 0.12222222222222179
+    },
+    {
+        "Emotion": "Grief",
+        "Valence": -0.9936507936507937,
+        "Arousal": -0.41746031746031753
+    },
+    {
+        "Emotion": "Pensiveness",
+        "Valence": -0.8,
+        "Arousal": -0.4
+    },
+    {
+        "Emotion": "Loathing",
+        "Valence": -1,
+        "Arousal": 0.5
+    },
+    {
+        "Emotion": "Boredom",
+        "Valence": -0.8,
+        "Arousal": -0.5
+    },
+    {
+        "Emotion": "Rage",
+        "Valence": -1,
+        "Arousal": 1
+    },
+    {
+        "Emotion": "Annoyance",
+        "Valence": -0.8,
+        "Arousal": 0.5
+    },
+    {
+        "Emotion": "Vigilance",
+        "Valence": 0.2,
+        "Arousal": 1
+    },
+    {
+        "Emotion": "Interest",
+        "Valence": 0.5,
+        "Arousal": 0.5
+    },
+    {
+        "Emotion": "Optimism",
+        "Valence": 0.8,
+        "Arousal": 0.7
+    },
+    {
+        "Emotion": "Love",
+        "Valence": 0.9,
+        "Arousal": 0.6
+    },
+    {
+        "Emotion": "Submission",
+        "Valence": -0.2,
+        "Arousal": 0.5
+    },
+    {
+        "Emotion": "Awe",
+        "Valence": 0.2,
+        "Arousal": 0.8
+    },
+    {
+        "Emotion": "Disapproval",
+        "Valence": -0.8,
+        "Arousal": 0.2
+    },
+    {
+        "Emotion": "Remorse",
+        "Valence": -1,
+        "Arousal": 0
+    },
+    {
+        "Emotion": "Contempt",
+        "Valence": -1,
+        "Arousal": 0.8
+    },
+    {
+        "Emotion": "Aggressiveness",
+        "Valence": -0.8,
+        "Arousal": 1
+    },
+    {
+        "Emotion": "Joyful expectation",
+        "Valence": 0.9,
+        "Arousal": 0.8
+    },
+    {
+        "Emotion": "Delight",
+        "Valence": 0.9,
+        "Arousal": 1
+    },
+    {
+        "Emotion": "Alarm",
+        "Valence": -0.8,
+        "Arousal": 0.8
+    },
+    {
+        "Emotion": "Despair",
+        "Valence": -0.9936507936507937,
+        "Arousal": -0.41746031746031753
+    },
+    {
+        "Emotion": "Disgusted anger",
+        "Valence": -1,
+        "Arousal": 0.9
+    },
+    {
+        "Emotion": "Curiosity",
+        "Valence": 0.5,
+        "Arousal": 0.8
+    }
+]

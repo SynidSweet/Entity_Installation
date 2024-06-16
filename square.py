@@ -21,7 +21,7 @@ def to_coordinates(valence, arousal):
 # Plotting
 fig, ax = plt.subplots(figsize=(figure_size, figure_size))
 ax.set_aspect('equal')
-ax.set_xlim(-1.1, 1.1)
+ax.set_xlim(-0.1, 1.1)
 ax.set_ylim(-1.1, 1.1)
 
 # Name the axes

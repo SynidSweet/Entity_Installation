@@ -1,6 +1,7 @@
 import json
 import matplotlib.pyplot as plt
 from matplotlib.widgets import Button
+import os
 
 # settings
 text_offset = 0.06
@@ -8,9 +9,23 @@ dot_size = 9
 text_size = 7
 figure_size = 9
 
+script_dir = os.path.dirname(os.path.abspath(__file__))
+file_name = 'updated_emotions.json'
+file_path = os.path.join(script_dir, file_name)
+
 # Load the JSON data
-with open('E:\\Projects\\Glade\\Entity\\emotions_coordinates2.json') as f:
-    data = json.load(f)
+def load_json(file_name):
+    file_path = os.path.join(script_dir, file_name)
+    with open(file_path) as f:
+        return json.load(f)
+
+# Save functions
+def save_json(data, file_name):
+    file_path = os.path.join(script_dir, file_name)
+    with open(file_path, 'w') as f:
+        json.dump(data, f, indent=4)
+
+data = load_json(file_name)
 
 # Function to convert valence and arousal to y, x coordinates
 def to_coordinates(valence, arousal):
@@ -20,6 +35,8 @@ def to_coordinates(valence, arousal):
 
 # Draggable points class
 class DraggablePoint:
+    dragging_point = None  # Class variable to track the currently dragged point
+
     def __init__(self, point, annotation, emotion, attributes, ax):
         self.point = point
         self.annotation = annotation
@@ -35,13 +52,17 @@ class DraggablePoint:
         self.cidmotion = self.point.figure.canvas.mpl_connect('motion_notify_event', self.on_motion)
 
     def on_press(self, event):
+        if DraggablePoint.dragging_point is not None:
+            return
         if event.inaxes != self.point.axes: return
         contains, _ = self.point.contains(event)
         if not contains: return
         self.press = self.point.get_data(), event.xdata, event.ydata
         self.background = self.point.figure.canvas.copy_from_bbox(self.ax.bbox)
+        DraggablePoint.dragging_point = self
 
     def on_motion(self, event):
+        if DraggablePoint.dragging_point is not self: return
         if self.press is None: return
         if event.inaxes != self.point.axes: return
         data, xpress, ypress = self.press
@@ -65,8 +86,10 @@ class DraggablePoint:
         self.point.figure.canvas.blit(self.ax.bbox)
 
     def on_release(self, event):
+        if DraggablePoint.dragging_point is not self: return
         self.press = None
         self.background = None
+        DraggablePoint.dragging_point = None
         self.point.figure.canvas.draw()
 
     def disconnect(self):
@@ -76,18 +99,16 @@ class DraggablePoint:
 
 # Save functions
 def save(event):
-    with open('E:\\Projects\\Glade\\Entity\\emotions_coordinates2.json', 'w') as f:
-        json.dump(data, f, indent=4)
+    save_json(data, file_name)
 
 def save_as(event):
     filename = input("Enter the filename to save as (with .json extension): ")
-    with open(filename, 'w') as f:
-        json.dump(data, f, indent=4)
+    save_json(data, filename)
 
 # Plotting
 fig, ax = plt.subplots(figsize=(figure_size, figure_size))
 ax.set_aspect('equal')
-ax.set_xlim(-1.1, 1.1)
+ax.set_xlim(-0.1, 1.1)
 ax.set_ylim(-1.1, 1.1)
 
 # Name the axes
@@ -97,27 +118,16 @@ ax.set_ylabel('Valence')
 draggable_points = []
 
 # Plot each emotion
-for category, emotions in data.items():
-    for emotion, attributes in emotions.items():
-        if 'Valence' in attributes and 'Arousal' in attributes:
-            valence = attributes['Valence']
-            arousal = attributes['Arousal']
-            x, y = to_coordinates(valence, arousal)
-            point, = ax.plot(x, y, 'o', markersize=dot_size)  # Note the comma to unpack the tuple
-            annotation = ax.text(x, y-text_offset, emotion, fontsize=text_size, ha='center', va='center')
-            draggable_point = DraggablePoint(point, annotation, emotion, attributes, ax)
-            draggable_point.connect()
-            draggable_points.append(draggable_point)
-        else:
-            for sub_emotion, sub_attributes in attributes.items():
-                valence = sub_attributes['Valence']
-                arousal = sub_attributes['Arousal']
-                x, y = to_coordinates(valence, arousal)
-                point, = ax.plot(x, y, 'o', markersize=dot_size)  # Note the comma to unpack the tuple
-                annotation = ax.text(x, y-text_offset, sub_emotion, fontsize=text_size, ha='center', va='center')
-                draggable_point = DraggablePoint(point, annotation, sub_emotion, sub_attributes, ax)
-                draggable_point.connect()
-                draggable_points.append(draggable_point)
+for emotion_data in data:
+    emotion = emotion_data["Emotion"]
+    valence = emotion_data["Valence"]
+    arousal = emotion_data["Arousal"]
+    x, y = to_coordinates(valence, arousal)
+    point, = ax.plot(x, y, 'o', markersize=dot_size)  # Note the comma to unpack the tuple
+    annotation = ax.text(x, y-text_offset, emotion, fontsize=text_size, ha='center', va='center')
+    draggable_point = DraggablePoint(point, annotation, emotion, emotion_data, ax)
+    draggable_point.connect()
+    draggable_points.append(draggable_point)
 
 plt.axhline(0, color='grey', linewidth=0.5)
 plt.axvline(0, color='grey', linewidth=0.5)
