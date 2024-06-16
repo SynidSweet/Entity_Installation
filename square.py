@@ -4,35 +4,29 @@ import numpy as np
 
 # settings
 text_offset = 0.06
-dot_size = 10
-text_size = 8
-figure_size = 8
+dot_size = 9
+text_size = 7
+figure_size = 9
 
 # Load the JSON data
 with open('E:\Projects\Glade\Entity\emotions_coordinates2.json') as f:
     data = json.load(f)
 
-# Function to convert valence and arousal to x, y coordinates
+# Function to convert valence and arousal to y, x coordinates
 def to_coordinates(valence, arousal):
-    angle = (1 - valence) * np.pi  # Map valence [-1, 1] to angle [π, 0]
-    radius = arousal  # Map arousal [0, 1] to radius [0, 1]
-    x = radius * np.cos(angle)
-    y = radius * np.sin(angle)
+    y = valence  # Valence now maps to y
+    x = arousal  # Arousal now maps to x
     return x, y
 
 # Plotting
 fig, ax = plt.subplots(figsize=(figure_size, figure_size))
 ax.set_aspect('equal')
-ax.set_xlim(-1.2, 1.2)
-ax.set_ylim(-1.2, 1.2)
+ax.set_xlim(-1.1, 1.1)
+ax.set_ylim(-1.1, 1.1)
 
 # Name the axes
-ax.set_xlabel('Valence')
-ax.set_ylabel('Arousal')
-
-# Draw circle
-circle = plt.Circle((0, 0), 1, color='lightgrey', fill=False)
-ax.add_artist(circle)
+ax.set_xlabel('Arousal')
+ax.set_ylabel('Valence')
 
 # Plot each emotion
 for category, emotions in data.items():
@@ -53,5 +47,5 @@ for category, emotions in data.items():
 
 plt.axhline(0, color='grey', linewidth=0.5)
 plt.axvline(0, color='grey', linewidth=0.5)
-plt.title('Emotion Circle Diagram')
+plt.title('Emotion Diagram')
 plt.show()

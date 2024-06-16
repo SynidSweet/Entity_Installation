@@ -16,7 +16,7 @@
                 "Arousal": 0.5
             },
             "Acceptance": {
-                "Valence": 0.05,
+                "Valence": 0.08809523809523839,
                 "Arousal": 0.0
             }
         },
@@ -36,14 +36,14 @@
                 "Arousal": 1
             },
             "Distraction": {
-                "Valence": -0.27,
-                "Arousal": 0.5
+                "Valence": -0.37793650793650824,
+                "Arousal": 0.12222222222222179
             }
         },
         "Sadness": {
             "Grief": {
-                "Valence": -1,
-                "Arousal": -0.5
+                "Valence": -0.9936507936507937,
+                "Arousal": -0.41746031746031753
             },
             "Pensiveness": {
                 "Valence": -0.8,
@@ -129,8 +129,8 @@
             "Arousal": 0.8
         },
         "Despair": {
-            "Valence": -1,
-            "Arousal": -0.5
+            "Valence": -0.9936507936507937,
+            "Arousal": -0.41746031746031753
         },
         "Disgusted_anger": {
             "Valence": -1,
